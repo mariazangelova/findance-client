@@ -1,5 +1,10 @@
 import React from "react";
+import FlipBox from "../components/FlipBox";
 
 export default function HomePage() {
-  return <div>HOME</div>;
+  return (
+    <div>
+      <FlipBox />
+    </div>
+  );
 }

@@ -9,8 +9,8 @@ export default function NavBar() {
         <NavLink to="/" exact className="three-d">
           HOME
           <span aria-hidden="true" class="three-d-box">
-            <span class="front">Home</span>
-            <span class="back">Home</span>
+            <span class="front">HOME</span>
+            <span class="back">HOME</span>
           </span>
         </NavLink>
       </li>
