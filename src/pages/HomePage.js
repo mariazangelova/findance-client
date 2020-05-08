@@ -1,10 +1,27 @@
-import React from "react";
-import FlipBox from "../components/FlipBox";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import Event from "../components/Event";
+import { fetchEvents } from "../store/events/actions";
+import { selectEvents } from "../store/events/selectors";
 
 export default function HomePage() {
+  const dispatch = useDispatch();
+  const events = useSelector(selectEvents);
+
+  useEffect(() => {
+    dispatch(fetchEvents());
+  }, [dispatch]);
+
+  console.log(events);
   return (
     <div>
-      <FlipBox />
+      {events.map((event) => (
+        <Event
+          key={event.id}
+          title={event.title}
+          description={event.description}
+        />
+      ))}
     </div>
   );
 }

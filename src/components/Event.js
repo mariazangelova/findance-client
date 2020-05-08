@@ -1,12 +1,12 @@
 import React from "react";
 import "../style/flipbox.css";
 
-export default function FlipBox() {
+export default function Event(props) {
   return (
     <div class="flip-box">
       <div class="flip-box-inner">
         <div class="flip-box-front">
-          <h2>title</h2>
+          <h2>{props.title}</h2>
           <p>date</p>
           <p>location</p>
         </div>
