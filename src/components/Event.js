@@ -8,11 +8,11 @@ export default function Event(props) {
         <div class="flip-box-front">
           <h2>{props.title}</h2>
           <p>date</p>
-          <p>location</p>
+          <p>{props.location}</p>
         </div>
         <div class="flip-box-back">
-          <p>description</p>
-          <p>teacher</p>
+          <p>{props.description}</p>
+          <p>{props.teacher}</p>
           <button>more and signup</button>
         </div>
       </div>

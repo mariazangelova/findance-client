@@ -20,6 +20,8 @@ export default function HomePage() {
           key={event.id}
           title={event.title}
           description={event.description}
+          teacher={event.teacher}
+          location={event.location}
         />
       ))}
     </div>
