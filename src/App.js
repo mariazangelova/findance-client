@@ -4,6 +4,7 @@ import NavBar from "./components/NavBar";
 import HomePage from "./pages/HomePage";
 import About from "./pages/About";
 import EventDetails from "./pages/EventDetails";
+import AddEvent from "./pages/AddEvent";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route exact path="/" component={HomePage} />
         <Route path="/about" component={About} />
         <Route path="/event" component={EventDetails} />
+        <Route path="/add-event" component={AddEvent} />
       </Switch>
     </div>
   );

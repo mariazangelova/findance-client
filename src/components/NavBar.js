@@ -7,10 +7,10 @@ export default function NavBar() {
     <ul class="block-menu">
       <li>
         <NavLink to="/" exact className="three-d">
-          HOME
+          Events
           <span aria-hidden="true" class="three-d-box">
-            <span class="front">HOME</span>
-            <span class="back">HOME</span>
+            <span class="front">Events</span>
+            <span class="back">Events</span>
           </span>
         </NavLink>
       </li>
@@ -24,11 +24,11 @@ export default function NavBar() {
         </NavLink>
       </li>
       <li>
-        <NavLink to="/something" class="three-d">
-          Home
+        <NavLink to="/add-event" class="three-d">
+          Add Event
           <span aria-hidden="true" class="three-d-box">
-            <span class="front">Home</span>
-            <span class="back">Home</span>
+            <span class="front">Add Event</span>
+            <span class="back">Add Event</span>
           </span>
         </NavLink>
       </li>
