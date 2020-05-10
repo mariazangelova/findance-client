@@ -14,7 +14,7 @@ export default function HomePage() {
 
   console.log(events);
   return (
-    <div>
+    <div className="container">
       {events.map((event) => (
         <Event
           key={event.id}
@@ -24,6 +24,27 @@ export default function HomePage() {
           location={event.location}
         />
       ))}
+      <Event
+        title={"Dance With Me"}
+        description={
+          "First you come close. Then put your right hand on my lower back. Your left hand on my shoulder. Look into my eyes. And move. Slowly."
+        }
+        teacher={"Maria Angelova"}
+        location={"Amsterdam"}
+        date={"01-01-2021"}
+      />
+      <Event />
+      <Event />
+      <Event />
+      <Event />
+      <Event />
+      <Event />
+      <Event />
+      <Event />
+      <Event />
+      <Event />
+      <Event />
+      <Event />
     </div>
   );
 }
