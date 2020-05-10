@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
 
 export class MapContainer extends Component {
