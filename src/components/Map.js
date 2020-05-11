@@ -104,6 +104,7 @@ class Map extends Component {
    * @return {string}
    */
   getArea = (addressArray) => {
+    console.log("ADDRESS", addressArray);
     let area = "";
     for (let i = 0; i < addressArray.length; i++) {
       if (addressArray[i].types[0]) {

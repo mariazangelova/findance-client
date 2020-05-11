@@ -8,7 +8,7 @@ class About extends React.Component {
       <div style={{ margin: "100px" }}>
         <Map
           google={this.props.google}
-          center={{ lat: 18.5204, lng: 73.8567 }}
+          center={{ lat: 52.3667, lng: 4.8945 }}
           height="300px"
           zoom={15}
         />
