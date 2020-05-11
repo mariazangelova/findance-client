@@ -61,7 +61,6 @@ class UploadImage extends React.Component {
               font: "roboto",
             }}
             label=""
-            withIcon="false"
             buttonText="UPLOAD AN IMAGE"
             onChange={this.onDrop}
             imgExtension={[".jpg", ".gif", ".png", ".gif"]}

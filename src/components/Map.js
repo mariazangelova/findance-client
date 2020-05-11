@@ -234,6 +234,17 @@ class Map extends Component {
             lng: this.state.mapPosition.lng,
           }}
         >
+          <Autocomplete
+            style={{
+              width: "98%",
+              height: "40px",
+              marginTop: "20px",
+              borderRadius: "4px",
+            }}
+            onPlaceSelected={this.onPlaceSelected}
+            types={["address"]}
+            //searchOptions={{ types: ["locality", "country"] }}
+          />
           {/* InfoWindow on top of marker */}
           <InfoWindow
             onClose={this.onInfoWindowClose}
@@ -248,6 +259,7 @@ class Map extends Component {
               </span>
             </div>
           </InfoWindow>
+
           {/*Marker*/}
           <Marker
             google={this.props.google}
@@ -261,17 +273,6 @@ class Map extends Component {
           />
           <Marker />
           {/* For Auto complete Search Box */}
-          <Autocomplete
-            style={{
-              width: "100%",
-              height: "40px",
-              paddingLeft: "16px",
-              marginTop: "2px",
-              marginBottom: "500px",
-            }}
-            onPlaceSelected={this.onPlaceSelected}
-            types={["(regions)"]}
-          />
         </GoogleMap>
       ))
     );
@@ -280,9 +281,8 @@ class Map extends Component {
       map = (
         <div>
           <div>
-            <div className="form-group">
-              <label htmlFor="">City</label>
-              <input
+            {/* <div className="form-group"> */}
+            {/* <input
                 type="text"
                 name="city"
                 className="form-control"
@@ -292,7 +292,6 @@ class Map extends Component {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="">Area</label>
               <input
                 type="text"
                 name="area"
@@ -303,7 +302,6 @@ class Map extends Component {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="">State</label>
               <input
                 type="text"
                 name="state"
@@ -312,9 +310,8 @@ class Map extends Component {
                 readOnly="readOnly"
                 value={this.state.state}
               />
-            </div>
+            </div> */}
             <div className="form-group">
-              <label htmlFor="">Address</label>
               <input
                 type="text"
                 name="address"
@@ -324,14 +321,13 @@ class Map extends Component {
                 value={this.state.address}
               />
             </div>
+            <AsyncMap
+              googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${GoogleMapsAPI}&libraries=places`}
+              loadingElement={<div style={{ height: `100%` }} />}
+              containerElement={<div style={{ height: this.props.height }} />}
+              mapElement={<div style={{ height: `100%` }} />}
+            />
           </div>
-
-          <AsyncMap
-            googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${GoogleMapsAPI}&libraries=places`}
-            loadingElement={<div style={{ height: `100%` }} />}
-            containerElement={<div style={{ height: this.props.height }} />}
-            mapElement={<div style={{ height: `100%` }} />}
-          />
         </div>
       );
     } else {
