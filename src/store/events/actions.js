@@ -12,3 +12,13 @@ export const fetchEvents = () => {
     dispatch(fetchEventsSuccess(response.data));
   };
 };
+export const postEventSuccess = () => ({
+  type: "POST_EVENT_SUCCESS",
+});
+export const postEvent = (eventData) => {
+  return async (dispatch, getState) => {
+    const response = await axios.post(`${apiUrl}/events`, { eventData });
+    console.log("new event", response);
+    dispatch(postEventSuccess());
+  };
+};

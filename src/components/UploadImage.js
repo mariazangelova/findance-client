@@ -25,7 +25,7 @@ class UploadImage extends React.Component {
         const image = result.data;
         this.setState(image);
         //console.log(image);
-        //this.props.getLabels(image.url);
+        this.props.postImage(image.url);
       })
       .catch((err) => {
         console.log(err);

@@ -221,6 +221,7 @@ class Map extends Component {
         lng: lngValue,
       },
     });
+    this.props.postAddress(address);
   };
 
   render() {

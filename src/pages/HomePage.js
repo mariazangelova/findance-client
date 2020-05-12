@@ -22,6 +22,7 @@ export default function HomePage() {
           description={event.description}
           teacher={event.teacher}
           location={event.location}
+          imageUrl={event.imageUrl}
         />
       ))}
       <Event

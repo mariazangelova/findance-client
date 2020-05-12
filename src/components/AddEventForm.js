@@ -1,27 +1,75 @@
 import React from "react";
+import { connect } from "react-redux";
 import UploadImage from "./UploadImage";
 //import GoogleMap from "../components/GoogleMap";
 import Map from "./Map";
+import { postEvent } from "../store/events/actions";
+import { Image } from "cloudinary-react";
 
-export default class AddEventForm extends React.Component {
+class AddEventForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      title: "",
+      description: "",
+      teacher: "",
+      dj: "",
+      duration: null,
+      price: null,
+      maxDancers: null,
+      imageUrl: "",
+      location: "",
+      datetime: new Date(),
+    };
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  handleSubmit(event) {
+    console.log("STATE", this.state);
+    event.preventDefault();
+    this.props.postEvent(this.state);
+    this.setState({
+      title: "",
+      description: "",
+      teacher: "",
+      dj: "",
+      duration: null,
+      price: null,
+      maxDancers: null,
+    });
+  }
+  getImage = (image) => {
+    this.setState({ imageUrl: image });
+  };
+  getAddress = (address) => {
+    this.setState({ location: address });
+  };
+
   render() {
     return (
       <div className="event-form">
-        <form action="/action_page.php">
+        <form action="/" onSubmit={this.handleSubmit}>
           <div className="form-left">
             <input
               type="text"
-              id="fname"
-              name="firstname"
               placeholder="TITLE"
+              value={this.title}
+              onChange={(e) => this.setState({ title: e.target.value })}
             />
-            <textarea name="description" placeholder="DESCRITPION"></textarea>
+            <textarea
+              name="description"
+              placeholder="DESCRITPION"
+              value={this.description}
+              onChange={(e) => this.setState({ description: e.target.value })}
+            ></textarea>
+
             <input
               type="text"
               id="teacher"
               name="teacher"
               placeholder="TEACHER"
               style={{ width: "48%", marginRight: "10px" }}
+              value={this.teacher}
+              onChange={(e) => this.setState({ teacher: e.target.value })}
             />
             <input
               type="text"
@@ -29,16 +77,29 @@ export default class AddEventForm extends React.Component {
               name="dj"
               placeholder="DJ"
               style={{ width: "48%" }}
+              value={this.dj}
+              onChange={(e) => this.setState({ dj: e.target.value })}
             />
-
+            <input
+              type="datetime-local"
+              id="meeting-time"
+              name="meeting-time"
+              value={this.datetime}
+              min={"2020-05-05T00:00"}
+              onChange={(e) => this.setState({ datetime: e.target.value })}
+              max="2030-06-14T00:00"
+              style={{ marginRight: "10px" }}
+            ></input>
             <input
               type="number"
               min="0"
               id="lname"
               name="duration"
               step="any"
-              placeholder="DURATION"
+              placeholder="HOW MANY HOURS"
               style={{ marginRight: "10px" }}
+              value={this.duration}
+              onChange={(e) => this.setState({ duration: e.target.value })}
             />
             <input
               type="number"
@@ -47,6 +108,9 @@ export default class AddEventForm extends React.Component {
               name="price"
               step="0.50"
               placeholder="PRICE"
+              value={this.price}
+              style={{ marginRight: "10px" }}
+              onChange={(e) => this.setState({ price: e.target.value })}
             />
             <input
               type="number"
@@ -54,21 +118,23 @@ export default class AddEventForm extends React.Component {
               id="maxDancers"
               name="macDancers"
               placeholder="HOW MANY PARTICIPANTS"
-              style={{ width: "100%" }}
+              value={this.maxDancers}
+              onChange={(e) => this.setState({ maxDancers: e.target.value })}
             />
-            <UploadImage />
+            <UploadImage postImage={this.getImage} />
           </div>
           <div className="form-right">
             <input type="submit" value="SUBMIT" />
 
             <div style={{}}>
-              {/* <Map
+              <Map
                 google={this.props.google}
                 center={{ lat: 52.3667, lng: 4.8945 }}
                 height="300px"
                 width="100%"
                 zoom={15}
-              /> */}
+                postAddress={this.getAddress}
+              />
             </div>
           </div>
         </form>
@@ -76,3 +142,9 @@ export default class AddEventForm extends React.Component {
     );
   }
 }
+
+const mapDispatchToProps = {
+  postEvent,
+};
+
+export default connect(null, mapDispatchToProps)(AddEventForm);
