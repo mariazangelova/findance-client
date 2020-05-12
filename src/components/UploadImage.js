@@ -51,9 +51,9 @@ class UploadImage extends React.Component {
               withIcon: false,
             }}
             buttonStyles={{
-              background: "white",
-              color: "black",
-              width: "100%",
+              background: "#4d4d4d",
+              color: "#ddd",
+              width: "50%",
               border: "none",
               borderRadius: "4px",
             }}

@@ -96,7 +96,7 @@ class AddEventForm extends React.Component {
               id="lname"
               name="duration"
               step="any"
-              placeholder="HOW MANY HOURS"
+              placeholder="DURATION"
               style={{ marginRight: "10px" }}
               value={this.duration}
               onChange={(e) => this.setState({ duration: e.target.value })}
@@ -117,7 +117,7 @@ class AddEventForm extends React.Component {
               min="1"
               id="maxDancers"
               name="macDancers"
-              placeholder="HOW MANY PARTICIPANTS"
+              placeholder="MAX DANCERS"
               value={this.maxDancers}
               onChange={(e) => this.setState({ maxDancers: e.target.value })}
             />
