@@ -105,9 +105,25 @@ textarea {
   float: left;
   width: 450px;
 }
+.button {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+}
 button {
   background-color: #a52a2a;
+  width: 100%;
+  color: white;
+  padding: 14px 20px;
+  border: none;
+  cursor: pointer;
 }
+.button-red:hover {
+  background-color: rgb(141, 36, 36);
+}
+/* .price {
+  color: #a52a2a;
+} */
 
 .container {
   display: grid;

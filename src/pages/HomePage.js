@@ -18,11 +18,15 @@ export default function HomePage() {
       {events.map((event) => (
         <Event
           key={event.id}
+          id={event.id}
           title={event.title}
           description={event.description}
           teacher={event.teacher}
           location={event.location}
           imageUrl={event.imageUrl}
+          datetime={event.datetime}
+          styles={event.styles}
+          price={event.price}
         />
       ))}
       <Event

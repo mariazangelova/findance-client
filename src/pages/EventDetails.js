@@ -1,5 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
+import { fetchEvent } from "../store/event/actions";
+import { selectEvent } from "../store/event/selectors";
 
 export default function EventDetails() {
-  return <div></div>;
+  const dispatch = useDispatch();
+  const { id } = useParams();
+  const event = useSelector(selectEvent);
+  console.log("EVENT", event);
+
+  useEffect(() => {
+    dispatch(fetchEvent(id));
+  }, [dispatch, id]);
+  return <div className="event-details"></div>;
 }
