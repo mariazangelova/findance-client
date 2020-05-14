@@ -1,9 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import UploadImage from "./UploadImage";
-//import GoogleMap from "../components/GoogleMap";
 import Map from "./Map";
 import { postEvent } from "../store/events/actions";
+import { fetchStyles } from "../store/styles/actions";
 import { Image } from "cloudinary-react";
 
 class AddEventForm extends React.Component {
@@ -18,10 +18,15 @@ class AddEventForm extends React.Component {
       price: null,
       maxDancers: null,
       imageUrl: "",
-      location: [],
+      location: "",
+      address: "",
+      longitude: "",
+      latitude: "",
+      styles: [],
       datetime: new Date(),
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
   handleSubmit(event) {
     console.log("STATE", this.state);
@@ -30,6 +35,7 @@ class AddEventForm extends React.Component {
     this.setState({
       title: "",
       description: "",
+      location: "",
       teacher: "",
       dj: "",
       duration: null,
@@ -37,14 +43,25 @@ class AddEventForm extends React.Component {
       maxDancers: null,
     });
   }
+  handleChange(event) {
+    this.setState({ styles: [...this.state.styles, event.target.value] });
+  }
   getImage = (image) => {
     this.setState({ imageUrl: image });
   };
   getAddress = (address, mapPosition) => {
-    this.setState({ location: [address, mapPosition] });
+    this.setState({
+      address: address,
+      longitude: mapPosition.lng,
+      latitude: mapPosition.lat,
+    });
   };
+  componentDidMount() {
+    this.props.fetchStyles();
+  }
 
   render() {
+    const { styles } = this.props;
     return (
       <div className="event-form">
         <form action="/" onSubmit={this.handleSubmit}>
@@ -61,6 +78,12 @@ class AddEventForm extends React.Component {
               value={this.description}
               onChange={(e) => this.setState({ description: e.target.value })}
             ></textarea>
+            <input
+              type="text"
+              placeholder="LOCATION NAME"
+              value={this.location}
+              onChange={(e) => this.setState({ location: e.target.value })}
+            />
 
             <input
               type="text"
@@ -121,20 +144,32 @@ class AddEventForm extends React.Component {
               value={this.maxDancers}
               onChange={(e) => this.setState({ maxDancers: e.target.value })}
             />
+            <div>
+              {styles.map((style) => (
+                <label key={style.id}>
+                  {style.name}
+                  <input
+                    type="checkbox"
+                    value={style.name}
+                    onChange={this.handleChange}
+                  />
+                </label>
+              ))}
+            </div>
             <UploadImage postImage={this.getImage} />
           </div>
           <div className="form-right">
             <input type="submit" value="SUBMIT" />
 
-            <div style={{}}>
-              <Map
+            <div>
+              {/* <Map
                 google={this.props.google}
                 center={{ lat: 52.3667, lng: 4.8945 }}
                 height="300px"
                 width="100%"
                 zoom={15}
                 postAddress={this.getAddress}
-              />
+              /> */}
             </div>
           </div>
         </form>
@@ -143,8 +178,11 @@ class AddEventForm extends React.Component {
   }
 }
 
+const mapStateToProps = (state) => ({ styles: state.styles });
+
 const mapDispatchToProps = {
   postEvent,
+  fetchStyles,
 };
 
-export default connect(null, mapDispatchToProps)(AddEventForm);
+export default connect(mapStateToProps, mapDispatchToProps)(AddEventForm);
