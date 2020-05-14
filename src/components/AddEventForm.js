@@ -18,7 +18,7 @@ class AddEventForm extends React.Component {
       price: null,
       maxDancers: null,
       imageUrl: "",
-      location: "",
+      location: [],
       datetime: new Date(),
     };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -40,8 +40,8 @@ class AddEventForm extends React.Component {
   getImage = (image) => {
     this.setState({ imageUrl: image });
   };
-  getAddress = (address) => {
-    this.setState({ location: address });
+  getAddress = (address, mapPosition) => {
+    this.setState({ location: [address, mapPosition] });
   };
 
   render() {

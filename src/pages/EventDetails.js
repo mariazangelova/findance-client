@@ -13,5 +13,13 @@ export default function EventDetails() {
   useEffect(() => {
     dispatch(fetchEvent(id));
   }, [dispatch, id]);
-  return <div className="event-details"></div>;
+  return (
+    <div className="event-details">
+      <h2>{event.title}</h2>
+      <img alt={event.title} src={event.imageUrl} />
+      <p>{event.description}</p>
+      <p>{event.teacher}</p>
+      <button>JOIN THIS CLASS</button>
+    </div>
+  );
 }
