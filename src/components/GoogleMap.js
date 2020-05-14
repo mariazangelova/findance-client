@@ -3,39 +3,20 @@ import React, { Component } from "react";
 import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
 
 export class MapContainer extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      stores: [],
-    };
-  }
-
-  displayMarkers = () => {
-    return this.state.stores.map((store, index) => {
-      return (
-        <Marker
-          key={index}
-          id={index}
-          position={{
-            lat: store.latitude,
-            lng: store.longitude,
-          }}
-          onClick={() => console.log("You clicked me!")}
-        />
-      );
-    });
-  };
-
   render() {
     return (
       <Map
         google={this.props.google}
-        zoom={8}
+        zoom={14}
         style={mapStyles}
-        initialCenter={{ lat: 52.3667, lng: 4.8945 }}
+        initialCenter={{ lat: this.props.lat, lng: this.props.lng }}
       >
-        {this.displayMarkers()}
+        <Marker
+          position={{
+            lat: this.props.lat,
+            lng: this.props.lng,
+          }}
+        />
       </Map>
     );
   }
