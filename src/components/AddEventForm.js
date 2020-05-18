@@ -44,7 +44,14 @@ class AddEventForm extends React.Component {
     });
   }
   handleChange(event) {
-    this.setState({ styles: [...this.state.styles, event.target.value] });
+    if (this.state.styles.includes(event.target.value)) {
+      const filtered = this.state.styles.filter(
+        (style) => style !== event.target.value
+      );
+      this.setState({ styles: filtered });
+    } else {
+      this.setState({ styles: [...this.state.styles, event.target.value] });
+    }
   }
   getImage = (image) => {
     this.setState({ imageUrl: image });
@@ -150,7 +157,7 @@ class AddEventForm extends React.Component {
                   {style.name}
                   <input
                     type="checkbox"
-                    value={style.name}
+                    value={style.id}
                     onChange={this.handleChange}
                   />
                 </label>
