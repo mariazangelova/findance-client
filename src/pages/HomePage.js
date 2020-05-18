@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Event from "../components/Event";
 import { fetchEvents } from "../store/events/actions";
 import { selectEvents } from "../store/events/selectors";
+import { fetchStyles } from "../store/styles/actions";
 
 export default function HomePage() {
   const dispatch = useDispatch();
@@ -10,6 +11,7 @@ export default function HomePage() {
 
   useEffect(() => {
     dispatch(fetchEvents());
+    dispatch(fetchStyles());
   }, [dispatch]);
 
   console.log(events);
