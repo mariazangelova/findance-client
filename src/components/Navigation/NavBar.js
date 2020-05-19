@@ -1,8 +1,16 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import "../style/navbar.css";
+import { useSelector } from "react-redux";
+import { selectToken } from "../../store/user/selectors";
+import "../../style/navbar.css";
+import LoggedIn from "./LoggedIn";
+import LoggedOut from "./LoggedOut";
 
 export default function NavBar() {
+  const token = useSelector(selectToken);
+
+  const loginLogoutControls = token ? <LoggedIn /> : <LoggedOut />;
+
   return (
     <ul class="block-menu">
       <li>
@@ -32,6 +40,7 @@ export default function NavBar() {
           </span>
         </NavLink>
       </li>
+      {loginLogoutControls}
     </ul>
   );
 }

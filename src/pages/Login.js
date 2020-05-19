@@ -51,7 +51,7 @@ export default function Login() {
           onChange={(event) => setPassword(event.target.value)}
           required
         />
-        <input type="submit" value="Signup" onSubmit={submitForm} />
+        <input type="submit" value="Signup" onClick={submitForm} />
       </form>
     </div>
   );
