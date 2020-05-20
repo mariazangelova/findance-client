@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchEvent } from "../store/event/actions";
 import { selectEvent } from "../store/event/selectors";
+import { selectToken } from "../store/user/selectors";
 import GoogleMap from "../components/GoogleMap";
 
 export default function EventDetails() {
@@ -10,10 +11,18 @@ export default function EventDetails() {
   const { id } = useParams();
   const event = useSelector(selectEvent);
   console.log("EVENT", event);
+  const token = useSelector(selectToken);
 
   useEffect(() => {
     dispatch(fetchEvent(id));
   }, [dispatch, id]);
+
+  const handleClick = () => {
+    if (!token) {
+      return <p>Register to join events.</p>;
+    }
+  };
+
   return (
     <div className="event-details">
       <h2>{event.title}</h2>
@@ -26,7 +35,11 @@ export default function EventDetails() {
           lat={parseFloat(event.latitude)}
         />
       </div>
-      <button>JOIN THIS CLASS</button>
+      <div>
+        <button style={{ width: "40%" }} onClick={handleClick}>
+          JOIN THIS CLASS
+        </button>
+      </div>
     </div>
   );
 }
