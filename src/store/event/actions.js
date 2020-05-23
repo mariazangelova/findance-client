@@ -13,6 +13,17 @@ export const fetchEvent = (id) => {
   };
 };
 
+export const fetchDancersSuccess = (dancers) => ({
+  type: "FETCH_DANCERS_SUCCESS",
+  payload: dancers,
+});
+export const fetchDancers = (eventId) => {
+  return async (dispatch, getState) => {
+    const response = await axios.get(`${apiUrl}/dancers/${eventId}`);
+    dispatch(fetchDancersSuccess(response.data));
+  };
+};
+
 export const newDancer = (newDancer) => ({
   type: "NEW_DANCER",
   payload: newDancer,

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { fetchEvent, postDancer } from "../store/event/actions";
-import { selectEvent } from "../store/event/selectors";
+import { fetchEvent, postDancer, fetchDancers } from "../store/event/actions";
+import { selectEvent, selectDancers } from "../store/event/selectors";
 import { selectToken } from "../store/user/selectors";
 import GoogleMap from "../components/GoogleMap";
 import "../style/eventdetails.css";
@@ -13,11 +13,13 @@ export default function EventDetails() {
   const dispatch = useDispatch();
   const { id } = useParams();
   const event = useSelector(selectEvent);
-  console.log("EVENT", event);
+  const dancers = useSelector(selectDancers);
+  console.log("dancers", dancers);
   const token = useSelector(selectToken);
 
   useEffect(() => {
     dispatch(fetchEvent(id));
+    dispatch(fetchDancers(id));
   }, [dispatch, id]);
 
   const handleClick = () => {
@@ -30,8 +32,17 @@ export default function EventDetails() {
 
   return (
     <div className="container">
-      <div className="col-md-6">
+      <div
+        className="col-md-6"
+        style={{ backgroundColor: "#bbb", color: "black" }}
+      >
         <img alt={event.title} src={event.imageUrl} />
+        <p>
+          Attending:
+          {dancers
+            ? dancers.map((dancer) => <span> {dancer.user.firstName},</span>)
+            : null}
+        </p>
       </div>
       <div
         className="col-md-4"
