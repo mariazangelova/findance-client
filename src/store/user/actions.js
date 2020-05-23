@@ -46,13 +46,12 @@ export const signUp = (firstName, lastName, email, phone, password) => {
 
 export const login = (email, password) => {
   return async (dispatch, getState) => {
-    console.log("HOI");
     try {
       const response = await axios.post(`${apiUrl}/login`, {
         email,
         password,
       });
-
+      console.log("USER DATA", response.data);
       dispatch(loginSuccess(response.data));
     } catch (error) {
       if (error.response) {
