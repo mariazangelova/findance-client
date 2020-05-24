@@ -16,7 +16,7 @@ export default function HomePage() {
 
   console.log(events);
   return (
-    <div className="container">
+    <div className="container-events">
       {events.map((event) => (
         <Event
           key={event.id}
@@ -40,18 +40,6 @@ export default function HomePage() {
         location={"Amsterdam"}
         date={"01-01-2021"}
       />
-      <Event />
-      <Event />
-      <Event />
-      <Event />
-      <Event />
-      <Event />
-      <Event />
-      <Event />
-      <Event />
-      <Event />
-      <Event />
-      <Event />
     </div>
   );
 }

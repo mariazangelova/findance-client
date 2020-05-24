@@ -4,7 +4,7 @@
   height: 400px;
   border: 1px solid #f1f1f1;
   perspective: 1000px;
-  margin-top: 10px;
+  margin-bottom: 30px;
 }
 
 .flip-box-inner {

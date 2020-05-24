@@ -31,12 +31,9 @@ export default function EventDetails() {
   };
 
   return (
-    <div className="container">
-      <div
-        className="col-md-6"
-        style={{ backgroundColor: "#bbb", color: "black" }}
-      >
-        <img alt={event.title} src={event.imageUrl} />
+    <div className="container-event">
+      <div className="collumn-left">
+        <img alt={event.title} src={event.imageUrl} className="event-image" />
         <p>
           Attending:
           {dancers
@@ -44,11 +41,8 @@ export default function EventDetails() {
             : null}
         </p>
       </div>
-      <div
-        className="col-md-4"
-        style={{ backgroundColor: "#bbb", color: "black" }}
-      >
-        <div className="details">
+      <div className="collumn-right">
+        <div>
           <h1 style={{ marginLeft: "10px" }}>{event.title}</h1>
           <p style={{ marginBottom: "10px" }}>
             {event.styles
