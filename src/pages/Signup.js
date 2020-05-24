@@ -30,14 +30,14 @@ export default function Login() {
   }
   return (
     <div>
-      <div class="body"></div>
-      <div class="grad"></div>
-      <div class="header">
+      <div className="body"></div>
+      <div className="grad"></div>
+      <div className="header">
         <div>
           Fin<span>Dance</span>
         </div>
       </div>
-      <form class="login">
+      <form className="login">
         <input
           type="text"
           placeholder="first name"

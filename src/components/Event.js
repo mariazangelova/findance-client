@@ -4,9 +4,9 @@ import "../style/flipbox.css";
 
 export default function Event(props) {
   return (
-    <div class="flip-box">
-      <div class="flip-box-inner">
-        <div class="flip-box-front">
+    <div className="flip-box">
+      <div className="flip-box-inner">
+        <div className="flip-box-front">
           <img src={props.imageUrl} alt="image" style={{ width: "300px" }} />
           <h2>{props.title}</h2>
           <p>{props.datetime}</p>
@@ -19,7 +19,7 @@ export default function Event(props) {
                 .join(", ")
             : null}
         </div>
-        <div class="flip-box-back">
+        <div className="flip-box-back">
           <p>{props.description}</p>
           <p>Teacher: {props.teacher}</p>
           <div className="price">
