@@ -1,6 +1,17 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 export default function LoggedOut() {
-  return <NavLink to="/login" linkText="Login" />;
+  const history = useHistory();
+
+  return (
+    <button
+      className="logout-button"
+      onClick={() => {
+        history.push("/login");
+      }}
+    >
+      LOG IN
+    </button>
+  );
 }

@@ -37,15 +37,17 @@ export default function EventDetails() {
     dispatch(dancerLeft(id));
     setMessage("You left this class.");
   };
-
+  console.log("dancers", dancers);
   return (
     <div className="container-event">
       <div className="collumn-left">
         <img alt={event.title} src={event.imageUrl} className="event-image" />
         <p>
           Attending:
-          {dancers
-            ? dancers.map((dancer) => <span> {dancer.user.firstName},</span>)
+          {dancers.length > 0
+            ? dancers.map((dancer) => (
+                <span key={dancer.user.id}> {dancer.user.firstName},</span>
+              ))
             : null}
         </p>
       </div>
@@ -63,7 +65,7 @@ export default function EventDetails() {
           <p>Teacher: {event.teacher}</p>
           <p>When: {event.datetime}</p>
           <p>Location: {event.location}</p>
-          {event.price == 0 ? (
+          {event.price === "0" ? (
             <p>This class is free.</p>
           ) : (
             <p>Price: {event.price}</p>

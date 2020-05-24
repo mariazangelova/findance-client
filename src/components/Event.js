@@ -7,7 +7,11 @@ export default function Event(props) {
     <div className="flip-box">
       <div className="flip-box-inner">
         <div className="flip-box-front">
-          <img src={props.imageUrl} alt="image" style={{ width: "300px" }} />
+          <img
+            src={props.imageUrl}
+            alt={props.title}
+            style={{ width: "300px" }}
+          />
           <h2>{props.title}</h2>
           <p>{props.datetime}</p>
           <p>{props.location}</p>
@@ -23,7 +27,7 @@ export default function Event(props) {
           <p>{props.description}</p>
           <p>Teacher: {props.teacher}</p>
           <div className="price">
-            {props.price == 0 ? (
+            {props.price === "0" ? (
               <p>This class is free.</p>
             ) : (
               <p>Price: {props.price}</p>
