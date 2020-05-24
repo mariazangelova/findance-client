@@ -1,33 +1,41 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { fetchEvent, postDancer, fetchDancers } from "../store/event/actions";
+import {
+  fetchEvent,
+  postDancer,
+  fetchDancers,
+  dancerLeft,
+} from "../store/event/actions";
 import { selectEvent, selectDancers } from "../store/event/selectors";
-import { selectToken } from "../store/user/selectors";
+import { selectToken, selectUserId } from "../store/user/selectors";
 import GoogleMap from "../components/GoogleMap";
 import "../style/eventdetails.css";
 
 export default function EventDetails() {
-  const [loginMessage, setLoginMessage] = useState("");
-  const [joinedMessage, setJoinedMessage] = useState("");
+  const [message, setMessage] = useState("");
   const dispatch = useDispatch();
   const { id } = useParams();
   const event = useSelector(selectEvent);
   const dancers = useSelector(selectDancers);
-  console.log("dancers", dancers);
   const token = useSelector(selectToken);
-
+  const userId = useSelector(selectUserId);
   useEffect(() => {
     dispatch(fetchEvent(id));
     dispatch(fetchDancers(id));
   }, [dispatch, id]);
 
-  const handleClick = () => {
+  const joinClass = () => {
     if (!token) {
-      setLoginMessage("Please login or signup to join this class.");
+      setMessage("Please login or signup to join this class.");
+      return;
     }
-    setJoinedMessage("You've signed up for this class.");
+    setMessage("You joined this class.");
     dispatch(postDancer(id));
+  };
+  const leaveClass = () => {
+    dispatch(dancerLeft(id));
+    setMessage("You left this class.");
   };
 
   return (
@@ -61,19 +69,24 @@ export default function EventDetails() {
             <p>Price: {event.price}</p>
           )}
         </div>
-        <button style={{ width: "40%" }} onClick={handleClick}>
-          JOIN THIS CLASS
-        </button>
-        <p>
-          {loginMessage}
-          {joinedMessage}
-        </p>
+        <div style={{ textAlign: "center" }}>
+          {dancers.some((dancer) => dancer.userId === userId) ? (
+            <button style={{ width: "40%" }} onClick={leaveClass}>
+              LEAVE THIS CLASS
+            </button>
+          ) : (
+            <button style={{ width: "40%" }} onClick={joinClass}>
+              JOIN THIS CLASS
+            </button>
+          )}
+          <p>{message}</p>
 
-        <GoogleMap
-          lng={parseFloat(event.longitude)}
-          lat={parseFloat(event.latitude)}
-        />
-        <p>{event.address}</p>
+          {/* <GoogleMap
+            lng={parseFloat(event.longitude)}
+            lat={parseFloat(event.latitude)}
+          /> */}
+          <p>{event.address}</p>
+        </div>
       </div>
     </div>
   );

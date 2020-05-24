@@ -39,3 +39,16 @@ export const postDancer = (eventId) => {
     //dispatch(newDancer(response.data));
   };
 };
+export const removeDancer = () => ({
+  type: "DANCER_LEFT",
+});
+export const dancerLeft = (eventId) => {
+  return async (dispatch, getState) => {
+    const userId = selectUserId(getState());
+    const response = await axios.delete(`${apiUrl}/dancers/${eventId}`, {
+      userId,
+    });
+    console.log("response", response);
+    //dispatch(newDancer(response.data));
+  };
+};
