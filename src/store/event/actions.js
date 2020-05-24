@@ -36,7 +36,7 @@ export const postDancer = (eventId) => {
       userId,
     });
     console.log("response", response);
-    //dispatch(newDancer(response.data));
+    dispatch(fetchDancersSuccess(response.data.data));
   };
 };
 export const removeDancer = () => ({
@@ -50,6 +50,6 @@ export const dancerLeft = (eventId) => {
       userId,
     });
     console.log("response", response);
-    //dispatch(newDancer(response.data));
+    dispatch(fetchDancersSuccess(response.data.data));
   };
 };
