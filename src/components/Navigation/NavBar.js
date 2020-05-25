@@ -15,6 +15,9 @@ export default function NavBar() {
 
   return (
     <ul className="block-menu">
+      <li className="logo">
+        FIN<span style={{ color: "#a52a2a" }}>DANCE</span>
+      </li>
       <li>
         <NavLink to="/" exact className="three-d">
           Events
@@ -44,6 +47,18 @@ export default function NavBar() {
           </NavLink>
         </li>
       ) : null}
+      {token ? (
+        <li>
+          <NavLink to="/myprofile" className="three-d">
+            MY PROFILE
+            <span aria-hidden="true" className="three-d-box">
+              <span className="front">MY PROFILE</span>
+              <span className="back">MY PROFILE</span>
+            </span>
+          </NavLink>
+        </li>
+      ) : null}
+
       {loginLogoutControls}
     </ul>
   );

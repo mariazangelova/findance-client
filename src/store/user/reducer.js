@@ -4,6 +4,7 @@ const initialState = {
   token: localStorage.getItem("token"),
   firstName: null,
   email: null,
+  events: [],
 };
 
 export default (state = initialState, action) => {
@@ -18,6 +19,9 @@ export default (state = initialState, action) => {
 
     case TOKEN_STILL_VALID:
       return { ...state, ...action.payload };
+
+    case "FETCH_USER_EVENTS_SUCCESS":
+      return { ...state, events: action.payload };
 
     default:
       return state;

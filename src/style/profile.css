@@ -1,0 +1,10 @@
+.profile {
+  margin: 50px;
+  background-color: #bbb;
+  color: black;
+  text-align: left;
+  border-radius: 5px;
+  width: 300px;
+  height: 400px;
+  position: fixed;
+}

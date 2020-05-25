@@ -92,3 +92,18 @@ export const getUserWithStoredToken = () => {
     }
   };
 };
+
+export const fetchUserEventsSuccess = (events) => ({
+  type: "FETCH_USER_EVENTS_SUCCESS",
+  payload: events,
+});
+export const fetchUserEvents = () => {
+  return async (dispatch, getState) => {
+    const userId = selectUserId(getState());
+    const response = await axios.post(`${apiUrl}/user/events`, {
+      userId,
+    });
+    console.log("events", response.data);
+    dispatch(fetchUserEventsSuccess(response.data));
+  };
+};
