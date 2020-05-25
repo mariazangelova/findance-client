@@ -2,6 +2,19 @@
 .block-menu {
   display: block;
   background: #000;
+  text-align: left;
+}
+.logo {
+  color: #fff;
+  display: block;
+  text-decoration: none;
+  font-family: "Passion One", Arial, sans-serif;
+  /* font-smoothing: antialiased; */
+  text-transform: uppercase;
+  overflow: visible;
+  line-height: 20px;
+  font-size: 24px;
+  padding: 15px 10px;
 }
 
 .block-menu li {
@@ -79,7 +92,6 @@
   padding: 14px 20px;
   border: none;
   cursor: pointer;
-  border-radius: 4px;
   text-decoration: none;
   font-family: "Passion One", Arial, sans-serif;
   /* font-smoothing: antialiased; */
@@ -90,4 +102,7 @@
   padding: 15px 10px;
   margin-left: 10px;
   float: right;
+}
+.logout-button:hover {
+  background-color: rgb(141, 36, 36);
 }

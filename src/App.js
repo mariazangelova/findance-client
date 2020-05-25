@@ -7,6 +7,7 @@ import EventDetails from "./pages/EventDetails";
 import AddEvent from "./pages/AddEvent";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import ProfilePage from "./pages/ProfilePage";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/events/:id" component={EventDetails} />
         <Route path="/add-event" component={AddEvent} />
         <Route path="/login" component={Login} />
+        <Route path="/myprofile" component={ProfilePage} />
         <Route path="/signup" component={Signup} />
       </Switch>
     </div>
