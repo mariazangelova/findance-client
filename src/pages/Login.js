@@ -3,7 +3,6 @@ import { login } from "../store/user/actions";
 import { selectToken } from "../store/user/selectors";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, Link } from "react-router-dom";
-import "../style/login.css";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -27,14 +26,10 @@ export default function Login() {
   }
   return (
     <div>
-      <div className="body"></div>
-      <div className="grad"></div>
-      <div className="header">
-        <div>
-          Fin<span>Dance</span>
-        </div>
-      </div>
-      <form className="login">
+      <form
+        className="event-form"
+        style={{ maxWidth: "300px", marginTop: "150px" }}
+      >
         <input
           type="text"
           placeholder="email"
@@ -51,7 +46,17 @@ export default function Login() {
           onChange={(event) => setPassword(event.target.value)}
           required
         />
-        <input type="submit" value="Signup" onClick={submitForm} />
+        <input type="submit" value="LOGIN" onClick={submitForm} />
+        <p style={{ marginTop: "20px" }}>
+          Not a member?{" "}
+          <Link
+            to="/signup"
+            style={{ textDecoration: "none", color: "#a52a2a" }}
+          >
+            {" "}
+            Click here to signup.{" "}
+          </Link>
+        </p>
       </form>
     </div>
   );
