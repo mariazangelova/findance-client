@@ -87,13 +87,6 @@ class AddEventForm extends React.Component {
             ></textarea>
             <input
               type="text"
-              placeholder="LOCATION NAME"
-              value={this.location}
-              onChange={(e) => this.setState({ location: e.target.value })}
-            />
-
-            <input
-              type="text"
               id="teacher"
               name="teacher"
               placeholder="TEACHER"
@@ -153,7 +146,7 @@ class AddEventForm extends React.Component {
             />
             <div>
               {styles.map((style) => (
-                <label key={style.id}>
+                <label key={style.id} className="style-checkbox">
                   {style.name}
                   <input
                     type="checkbox"
@@ -167,16 +160,21 @@ class AddEventForm extends React.Component {
           </div>
           <div className="form-right">
             <input type="submit" value="SUBMIT" />
-
+            <input
+              type="text"
+              placeholder="LOCATION NAME"
+              value={this.location}
+              onChange={(e) => this.setState({ location: e.target.value })}
+            />
             <div>
-              {/* <Map
+              <Map
                 google={this.props.google}
                 center={{ lat: 52.3667, lng: 4.8945 }}
                 height="300px"
                 width="100%"
                 zoom={15}
                 postAddress={this.getAddress}
-              /> */}
+              />
             </div>
           </div>
         </form>

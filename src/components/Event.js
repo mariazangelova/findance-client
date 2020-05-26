@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../style/flipbox.css";
+import moment from "moment";
 
 export default function Event(props) {
   return (
@@ -13,7 +14,7 @@ export default function Event(props) {
             style={{ width: "300px" }}
           />
           <h2>{props.title}</h2>
-          <p>{props.datetime}</p>
+          <p>{moment(props.datetime).format("dddd, MMMM Do YYYY, h:mm a")}</p>
           <p>{props.location}</p>
           {props.styles
             ? Array.prototype.map

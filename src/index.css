@@ -144,6 +144,13 @@ button {
   color: #a52a2a;
 } */
 
+.style-checkbox {
+  font: 16px Arial, Helvetica, sans-serif;
+  text-transform: uppercase;
+  color: grey;
+  margin-left: 10px;
+}
+
 .container-events {
   display: grid;
   grid-template-columns: auto auto auto;
