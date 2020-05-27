@@ -25,18 +25,18 @@ export default function Login() {
     setPassword("");
   }
   return (
-    <div>
+    <div className="login">
       <form
         className="event-form"
         style={{ maxWidth: "300px", marginTop: "150px" }}
       >
         <input
+          required
           type="text"
           placeholder="email"
           name="email"
           value={email}
           onChange={(event) => setEmail(event.target.value)}
-          required
         />
         <input
           type="password"

@@ -28,7 +28,7 @@ export default function Login() {
     setPassword("");
   }
   return (
-    <div>
+    <div className="login">
       <form
         className="event-form"
         style={{ maxWidth: "300px", marginTop: "100px" }}
