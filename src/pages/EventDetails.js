@@ -11,6 +11,7 @@ import { selectEvent, selectDancers } from "../store/event/selectors";
 import { selectToken, selectUserId } from "../store/user/selectors";
 import GoogleMap from "../components/GoogleMap";
 import "../style/eventdetails.css";
+import Loading from "../components/Loading";
 
 export default function EventDetails() {
   const [message, setMessage] = useState("");
@@ -37,7 +38,11 @@ export default function EventDetails() {
     dispatch(dancerLeft(id));
     setMessage("You left this class.");
   };
-  console.log("dancers", dancers);
+  //console.log("dancers", dancers);
+  //console.log("event", event);
+  if (Object.entries(event).length === 0) {
+    return <Loading type={"bars"} color={"black"} />;
+  }
   return (
     <div className="container-event">
       <div className="collumn-left">
