@@ -4,6 +4,7 @@ import Event from "../components/Event";
 import { fetchEvents } from "../store/events/actions";
 import { selectEvents } from "../store/events/selectors";
 import { fetchStyles } from "../store/styles/actions";
+import Loading from "../components/Loading";
 
 export default function HomePage() {
   const dispatch = useDispatch();
@@ -14,7 +15,10 @@ export default function HomePage() {
     dispatch(fetchStyles());
   }, [dispatch]);
 
-  console.log(events);
+  if (events.length === 0) {
+    return <Loading type={"bars"} color={"black"} />;
+  }
+  console.log("events", events);
   return (
     <div className="container-events">
       {events.map((event) => (
@@ -31,15 +35,6 @@ export default function HomePage() {
           price={event.price}
         />
       ))}
-      <Event
-        title={"Dance With Me"}
-        description={
-          "First you come close. Then put your right hand on my lower back. Your left hand on my shoulder. Look into my eyes. And move. Slowly."
-        }
-        teacher={"Maria Angelova"}
-        location={"Amsterdam"}
-        date={"01-01-2021"}
-      />
     </div>
   );
 }

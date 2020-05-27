@@ -2,9 +2,13 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { selectUser } from "../store/user/selectors";
 import "../style/profile.css";
+import Loading from "./Loading";
 
 export default function Profile() {
   const user = useSelector(selectUser);
+  if (!user) {
+    return <Loading type={"bars"} color={"black"} />;
+  }
 
   return (
     <div className="profile">
