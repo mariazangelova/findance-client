@@ -4,7 +4,9 @@ import UploadImage from "./UploadImage";
 import Map from "./Map";
 import { postEvent } from "../store/events/actions";
 import { fetchStyles } from "../store/styles/actions";
-import { Image } from "cloudinary-react";
+import { Redirect } from "react-router-dom";
+
+//import { Image } from "cloudinary-react";
 
 class AddEventForm extends React.Component {
   constructor(props) {
@@ -24,6 +26,7 @@ class AddEventForm extends React.Component {
       latitude: "",
       styles: [],
       datetime: new Date(),
+      submitted: false,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -41,6 +44,7 @@ class AddEventForm extends React.Component {
       duration: null,
       price: null,
       maxDancers: null,
+      submitted: true,
     });
   }
   handleChange(event) {
@@ -66,9 +70,18 @@ class AddEventForm extends React.Component {
   componentDidMount() {
     this.props.fetchStyles();
   }
-
   render() {
     const { styles } = this.props;
+    if (this.state.submitted === true) {
+      return (
+        <div
+          className="container-event"
+          style={{ marginTop: "100px", padding: "50px" }}
+        >
+          <h1>The event has been added. Thank you.</h1>
+        </div>
+      );
+    }
     return (
       <div className="event-form">
         <form action="/" onSubmit={this.handleSubmit}>
