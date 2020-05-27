@@ -16,10 +16,10 @@ export default function Profile() {
         />
       </div>
       <div style={{ marginTop: "30px" }}>
-        <p>First name: {user.firstName}</p>
-        <p>Second name: {user.secondName}</p>
-        <p>Email: {user.email}</p>
-        <p>Phone: {user.phone}</p>
+        <p className="profile-data">First name: {user.firstName}</p>
+        <p className="profile-data">Second name: {user.secondName}</p>
+        <p className="profile-data"> Email: {user.email}</p>
+        <p className="profile-data">Phone: {user.phone}</p>
       </div>
     </div>
   );

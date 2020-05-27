@@ -8,3 +8,7 @@
   height: 400px;
   position: fixed;
 }
+.profile-data {
+  border-bottom: 1px solid #ddd;
+  padding: 3px;
+}
