@@ -3,8 +3,10 @@ import { login } from "../store/user/actions";
 import { selectToken } from "../store/user/selectors";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
 
 export default function Login() {
+  const { register, handleSubmit, watch, errors } = useForm();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
@@ -17,36 +19,39 @@ export default function Login() {
     }
   }, [token, history]);
 
-  function submitForm(event) {
-    event.preventDefault();
+  function onSubmit(event) {
+    //event.preventDefault();
 
     dispatch(login(email, password));
     setEmail("");
     setPassword("");
   }
   return (
-    <div>
+    <div className="login">
       <form
         className="event-form"
-        style={{ maxWidth: "300px", marginTop: "150px" }}
+        style={{ maxWidth: "300px", marginTop: "180px" }}
       >
         <input
+          ref={register({ required: true })}
           type="text"
           placeholder="email"
           name="email"
           value={email}
           onChange={(event) => setEmail(event.target.value)}
-          required
         />
+        {errors.email && <span>This field is required</span>}
+
         <input
+          ref={register({ required: true })}
           type="password"
           placeholder="password"
           name="password"
           value={password}
           onChange={(event) => setPassword(event.target.value)}
-          required
         />
-        <input type="submit" value="LOGIN" onClick={submitForm} />
+        {errors.password && <span>This field is required</span>}
+        <input type="submit" value="LOGIN" onClick={handleSubmit(onSubmit)} />
         <p style={{ marginTop: "20px" }}>
           Not a member?{" "}
           <Link

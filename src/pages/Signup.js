@@ -2,9 +2,12 @@ import React, { useState, useEffect } from "react";
 import { signUp } from "../store/user/actions";
 import { selectToken } from "../store/user/selectors";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import { useForm } from "react-hook-form";
 
 export default function Login() {
+  const { register, handleSubmit, watch, errors } = useForm();
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -21,26 +24,27 @@ export default function Login() {
   }, [token, history]);
 
   function submitForm(event) {
-    event.preventDefault();
+    //event.preventDefault();
     dispatch(signUp(firstName, lastName, email, phone, password));
 
     setEmail("");
     setPassword("");
   }
   return (
-    <div>
+    <div className="login">
       <form
         className="event-form"
-        style={{ maxWidth: "300px", marginTop: "100px" }}
+        style={{ maxWidth: "300px", marginTop: "150px" }}
       >
         <input
+          ref={register({ required: true })}
           type="text"
           placeholder="first name"
           name="firstName"
           value={firstName}
           onChange={(event) => setFirstName(event.target.value)}
-          required
         />
+        {errors.firstName && <span>Please type your first name.</span>}
         <input
           type="text"
           placeholder="last name"
@@ -54,8 +58,15 @@ export default function Login() {
           name="email"
           value={email}
           onChange={(event) => setEmail(event.target.value)}
-          required
+          ref={register({
+            required: "Required",
+            pattern: {
+              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+              message: "invalid email address",
+            },
+          })}
         />
+        {errors.email && errors.email.message}
         <input
           type="text"
           placeholder="phone number"
@@ -69,15 +80,23 @@ export default function Login() {
           name="password"
           value={password}
           onChange={(event) => setPassword(event.target.value)}
-          required
+          ref={register({ required: true })}
         />
+        {errors.password && <span>This field is required</span>}
+
         <input
           type="password"
           placeholder="repeat password"
           name="password"
-          required
+          ref={register({ required: true })}
         />
-        <input type="submit" value="SIGN UP" onClick={submitForm} />
+        {errors.password && <span>This field is required</span>}
+
+        <input
+          type="submit"
+          value="SIGN UP"
+          onClick={handleSubmit(submitForm)}
+        />
       </form>
     </div>
   );

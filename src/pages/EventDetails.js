@@ -43,11 +43,9 @@ export default function EventDetails() {
       <div className="collumn-left">
         <img alt={event.title} src={event.imageUrl} className="event-image" />
         <p>
-          Attending:
+          Attending:{" "}
           {dancers.length > 0
-            ? dancers.map((dancer) => (
-                <span key={dancer.user.id}> {dancer.user.firstName},</span>
-              ))
+            ? dancers.map((dancer) => dancer.user.firstName).join(", ")
             : null}
         </p>
       </div>
@@ -61,9 +59,14 @@ export default function EventDetails() {
                 })
               : null}
           </p>
+          <GoogleMap
+            lng={parseFloat(event.longitude)}
+            lat={parseFloat(event.latitude)}
+          />
           <p>{event.description}</p>
           <p>Teacher: {event.teacher}</p>
           <p>When: {event.datetime}</p>
+
           <p>Location: {event.location}</p>
           {event.price === "0" ? (
             <p>This class is free.</p>
@@ -71,7 +74,10 @@ export default function EventDetails() {
             <p>Price: {event.price}</p>
           )}
         </div>
-        <div style={{ textAlign: "center" }}>
+
+        <div style={{ marginTop: "50px", position: "relative" }}>
+          <p style={{ float: "right" }}>{event.address}</p>
+
           {dancers.some((dancer) => dancer.userId === userId) ? (
             <button style={{ width: "40%" }} onClick={leaveClass}>
               LEAVE THIS CLASS
@@ -82,12 +88,6 @@ export default function EventDetails() {
             </button>
           )}
           <p>{message}</p>
-
-          {/* <GoogleMap
-            lng={parseFloat(event.longitude)}
-            lat={parseFloat(event.latitude)}
-          /> */}
-          <p>{event.address}</p>
         </div>
       </div>
     </div>

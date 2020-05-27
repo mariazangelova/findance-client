@@ -6,6 +6,7 @@ body {
   /* font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif; */
   font-family: "Exo", sans-serif;
+  margin: 0px;
 }
 
 p {
@@ -143,10 +144,29 @@ button {
   color: #a52a2a;
 } */
 
+.style-checkbox {
+  font: 16px Arial, Helvetica, sans-serif;
+  text-transform: uppercase;
+  color: grey;
+  margin-left: 10px;
+}
+
 .container-events {
   display: grid;
   grid-template-columns: auto auto auto;
   grid-column-gap: 10px;
   margin: 50px;
   margin-left: 150px;
+}
+.login {
+  background-image: url("https://cdn.artphotolimited.com/images/5bc1f01e8fb7c7316fb75160/1000x1000/sandra-pour-la-serie-dance-in-lyon.jpg");
+  background-position: right; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
 }

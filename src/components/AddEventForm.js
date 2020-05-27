@@ -4,7 +4,9 @@ import UploadImage from "./UploadImage";
 import Map from "./Map";
 import { postEvent } from "../store/events/actions";
 import { fetchStyles } from "../store/styles/actions";
-import { Image } from "cloudinary-react";
+import { Redirect } from "react-router-dom";
+
+//import { Image } from "cloudinary-react";
 
 class AddEventForm extends React.Component {
   constructor(props) {
@@ -24,6 +26,7 @@ class AddEventForm extends React.Component {
       latitude: "",
       styles: [],
       datetime: new Date(),
+      submitted: false,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -41,6 +44,7 @@ class AddEventForm extends React.Component {
       duration: null,
       price: null,
       maxDancers: null,
+      submitted: true,
     });
   }
   handleChange(event) {
@@ -66,9 +70,18 @@ class AddEventForm extends React.Component {
   componentDidMount() {
     this.props.fetchStyles();
   }
-
   render() {
     const { styles } = this.props;
+    if (this.state.submitted === true) {
+      return (
+        <div
+          className="container-event"
+          style={{ marginTop: "100px", padding: "50px" }}
+        >
+          <h1>The event has been added. Thank you.</h1>
+        </div>
+      );
+    }
     return (
       <div className="event-form">
         <form action="/" onSubmit={this.handleSubmit}>
@@ -85,13 +98,6 @@ class AddEventForm extends React.Component {
               value={this.description}
               onChange={(e) => this.setState({ description: e.target.value })}
             ></textarea>
-            <input
-              type="text"
-              placeholder="LOCATION NAME"
-              value={this.location}
-              onChange={(e) => this.setState({ location: e.target.value })}
-            />
-
             <input
               type="text"
               id="teacher"
@@ -153,7 +159,7 @@ class AddEventForm extends React.Component {
             />
             <div>
               {styles.map((style) => (
-                <label key={style.id}>
+                <label key={style.id} className="style-checkbox">
                   {style.name}
                   <input
                     type="checkbox"
@@ -167,16 +173,21 @@ class AddEventForm extends React.Component {
           </div>
           <div className="form-right">
             <input type="submit" value="SUBMIT" />
-
+            <input
+              type="text"
+              placeholder="LOCATION NAME"
+              value={this.location}
+              onChange={(e) => this.setState({ location: e.target.value })}
+            />
             <div>
-              {/* <Map
+              <Map
                 google={this.props.google}
                 center={{ lat: 52.3667, lng: 4.8945 }}
                 height="300px"
                 width="100%"
                 zoom={15}
                 postAddress={this.getAddress}
-              /> */}
+              />
             </div>
           </div>
         </form>
