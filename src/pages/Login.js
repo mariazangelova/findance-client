@@ -20,7 +20,7 @@ export default function Login() {
   }, [token, history]);
 
   function onSubmit(event) {
-    event.preventDefault();
+    //event.preventDefault();
 
     dispatch(login(email, password));
     setEmail("");

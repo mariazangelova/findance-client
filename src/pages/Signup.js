@@ -24,7 +24,7 @@ export default function Login() {
   }, [token, history]);
 
   function submitForm(event) {
-    event.preventDefault();
+    //event.preventDefault();
     dispatch(signUp(firstName, lastName, email, phone, password));
 
     setEmail("");
