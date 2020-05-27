@@ -43,11 +43,9 @@ export default function EventDetails() {
       <div className="collumn-left">
         <img alt={event.title} src={event.imageUrl} className="event-image" />
         <p>
-          Attending:
+          Attending:{" "}
           {dancers.length > 0
-            ? dancers.map((dancer) => (
-                <span key={dancer.user.id}> {dancer.user.firstName},</span>
-              ))
+            ? dancers.map((dancer) => dancer.user.firstName).join(", ")
             : null}
         </p>
       </div>
