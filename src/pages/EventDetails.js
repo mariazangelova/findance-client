@@ -12,6 +12,7 @@ import { selectToken, selectUserId } from "../store/user/selectors";
 import GoogleMap from "../components/GoogleMap";
 import "../style/eventdetails.css";
 import Loading from "../components/Loading";
+import moment from "moment";
 
 export default function EventDetails() {
   const [message, setMessage] = useState("");
@@ -46,7 +47,9 @@ export default function EventDetails() {
   return (
     <div className="container-event">
       <div className="collumn-left">
-        <img alt={event.title} src={event.imageUrl} className="event-image" />
+        {event.imageUrl !== "" ? (
+          <img alt={event.title} src={event.imageUrl} className="event-image" />
+        ) : null}
         <p>
           Attending:{" "}
           {dancers.length > 0
@@ -55,7 +58,7 @@ export default function EventDetails() {
         </p>
       </div>
       <div className="collumn-right">
-        <div>
+        <div style={{ minHeight: "380px" }}>
           <h1 style={{ marginLeft: "10px" }}>{event.title}</h1>
           <p style={{ marginBottom: "10px" }}>
             {event.styles
@@ -64,13 +67,19 @@ export default function EventDetails() {
                 })
               : null}
           </p>
-          <GoogleMap
-            lng={parseFloat(event.longitude)}
-            lat={parseFloat(event.latitude)}
-          />
-          <p>{event.description}</p>
-          <p>Teacher: {event.teacher}</p>
-          <p>When: {event.datetime}</p>
+          {event.longitude !== "" && event.latitude !== "" ? (
+            <GoogleMap
+              lng={parseFloat(event.longitude)}
+              lat={parseFloat(event.latitude)}
+            />
+          ) : null}
+
+          <p style={{}}>{event.description}</p>
+          {event.teahcer ? <p>Teacher: {event.teacher}</p> : null}
+          {event.dj ? <p>DJ: {event.dj}</p> : null}
+          <p>
+            When: {moment(event.datetime).format("dddd, MMMM Do YYYY, h:mm a")}
+          </p>
 
           <p>Location: {event.location}</p>
           {event.price === "0" ? (
