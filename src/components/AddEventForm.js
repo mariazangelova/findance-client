@@ -124,7 +124,7 @@ class AddEventForm extends React.Component {
               min={"2020-05-05T00:00"}
               onChange={(e) => this.setState({ datetime: e.target.value })}
               max="2030-06-14T00:00"
-              style={{ marginRight: "10px" }}
+              style={{ marginRight: "10px", width: "48%" }}
             ></input>
             <input
               type="number"
@@ -133,7 +133,7 @@ class AddEventForm extends React.Component {
               name="duration"
               step="any"
               placeholder="DURATION"
-              style={{ marginRight: "10px" }}
+              style={{ width: "48%" }}
               value={this.duration}
               onChange={(e) => this.setState({ duration: e.target.value })}
             />
@@ -145,7 +145,7 @@ class AddEventForm extends React.Component {
               step="0.50"
               placeholder="PRICE"
               value={this.price}
-              style={{ marginRight: "10px" }}
+              style={{ marginRight: "10px", width: "48%" }}
               onChange={(e) => this.setState({ price: e.target.value })}
             />
             <input
@@ -156,6 +156,7 @@ class AddEventForm extends React.Component {
               placeholder="MAX DANCERS"
               value={this.maxDancers}
               onChange={(e) => this.setState({ maxDancers: e.target.value })}
+              style={{ width: "48%" }}
             />
             <div>
               {styles.map((style) => (
