@@ -3,6 +3,8 @@
 Findance is a fullstack app where users can search for, join/leave or add dance classes.
 Not evryone is using Facebook and it's nice to have different classes in the same place!
 
+[See deployed version](https://findance.netlify.app/)
+
 ## Frontend Technology
 
 ###### React
