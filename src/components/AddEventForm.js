@@ -4,7 +4,6 @@ import UploadImage from "./UploadImage";
 import Map from "./Map";
 import { postEvent } from "../store/events/actions";
 import { fetchStyles } from "../store/styles/actions";
-import { Redirect } from "react-router-dom";
 
 //import { Image } from "cloudinary-react";
 

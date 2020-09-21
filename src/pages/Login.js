@@ -6,7 +6,7 @@ import { useHistory, Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 export default function Login() {
-  const { register, handleSubmit, watch, errors } = useForm();
+  const { register, handleSubmit, errors } = useForm();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();

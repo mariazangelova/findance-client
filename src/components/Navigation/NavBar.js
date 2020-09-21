@@ -1,15 +1,13 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { selectToken } from "../../store/user/selectors";
 import "../../style/navbar.css";
 import LoggedIn from "./LoggedIn";
 import LoggedOut from "./LoggedOut";
-import { logOut } from "../../store/user/actions";
 
 export default function NavBar() {
   const token = useSelector(selectToken);
-  const dispatch = useDispatch();
 
   const loginLogoutControls = token ? <LoggedIn /> : <LoggedOut />;
 

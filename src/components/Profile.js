@@ -16,7 +16,7 @@ export default function Profile() {
         <img
           style={{ width: "200px", borderRadius: "50%" }}
           src="https://kansai-resilience-forum.jp/wp-content/uploads/2019/02/IAFOR-Blank-Avatar-Image-1.jpg"
-          alt="Card image cap"
+          alt="card"
         />
       </div>
       <div style={{ marginTop: "30px" }}>
